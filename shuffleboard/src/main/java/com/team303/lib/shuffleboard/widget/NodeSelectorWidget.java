@@ -93,7 +93,6 @@ public final class NodeSelectorWidget extends SimpleAnnotatedWidget<Integer> {
    */
   private Color getColor() {
     if (getData()!= null) {
-    //System.out.println("\n\n\n\n\n\n\n\n"+getDataType().toString()+"\n\n\n\n\n\n\n\n\n");
     final Number data = getData();
     final Integer realData = data.intValue();
     final Color PURPLE = Color.rgb(102,0,153);
