@@ -1,0 +1,27 @@
+
+plugins {
+    id "java"
+}
+
+dependencies {
+
+    implementation project(':shuffleboard')
+}
+
+
+// jar {
+//     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+//     manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
+//     duplicatesStrategy = DuplicatesStrategy.INCLUDE
+// }
+
+configurations.all {
+    exclude group: "edu.wpi.first.wpilibj"
+}
+
+
+
+// Configure jar and deploy tasks
+//deployArtifact.jarTask = jar
+//wpi.java.configureExecutableTasks(jar)
+//wpi.java.configureTestTasks(test)
