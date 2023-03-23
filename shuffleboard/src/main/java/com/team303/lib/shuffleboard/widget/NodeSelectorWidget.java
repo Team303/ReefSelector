@@ -46,6 +46,12 @@ public final class NodeSelectorWidget extends SimpleAnnotatedWidget<Integer> {
         Bindings.createObjectBinding(
             () -> createSolidColorBackground(getColor()),
             dataProperty()));
+    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            setData(6);
+      }
+    });
     //dataProperty().addListener((newValue) -> checkSoundPlay());
   }
 
