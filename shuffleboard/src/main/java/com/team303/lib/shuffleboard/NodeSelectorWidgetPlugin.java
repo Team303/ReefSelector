@@ -13,7 +13,7 @@ import com.team303.lib.shuffleboard.widget.NodeSelectorWidget;
 @Description(
     group = "com.team303.lib",
     name = "NodeSelectorWidget",
-    version = "2023.1.1",
+    version = "2023.2.1",
     summary = "A widget that updates color based off of the state of how the operator interacts with a node"
 )
 public final class NodeSelectorWidgetPlugin extends Plugin {

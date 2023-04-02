@@ -13,9 +13,12 @@ import edu.wpi.first.shuffleboard.api.widget.SimpleAnnotatedWidget;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.EventHandler;
 // import javafx.beans.property.SimpleStringProperty;
 // import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
@@ -49,10 +52,14 @@ public final class NodeSelectorWidget extends SimpleAnnotatedWidget<Integer> {
     root.setOnMouseClicked(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
+          if(event.getButton() == MouseButton.PRIMARY) {
             setData(6);
+          } else if (event.getButton() == MouseButton.SECONDARY) {
+            setData(7);
+          }  
       }
-    });
-    //dataProperty().addListener((newValue) -> checkSoundPlay());
+   });
+   // dataProperty().addListener((newValue) -> checkSoundPlay());
   }
 
 
