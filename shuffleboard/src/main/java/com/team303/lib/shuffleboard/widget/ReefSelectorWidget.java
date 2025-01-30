@@ -6,6 +6,7 @@ import java.util.List;
 import org.fxmisc.easybind.EasyBind;
 
 import com.google.common.collect.ImmutableList;
+import com.team303.lib.shuffleboard.data.ReefState;
 
 import edu.wpi.first.shuffleboard.api.prefs.Group;
 import edu.wpi.first.shuffleboard.api.prefs.Setting;
@@ -34,9 +35,9 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-@Description(name = "ReefSelector", dataTypes = double[].class, summary = "Updates color of box when state of node changes")
+@Description(name = "ReefSelector", dataTypes = ReefState.class, summary = "Updates color of box when state of node changes")
 @ParametrizedController("ReefSelectorWidget.fxml")
-public final class ReefSelectorWidget extends SimpleAnnotatedWidget<double[]> {
+public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
 
   /**
    * The root content to display. We do a simple light grey / dark grey box to
@@ -46,24 +47,19 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<double[]> {
   private Pane root;
 
   @FXML
-  private Rectangle L1;
-
-  @FXML
-  private Rectangle L2;
-
-  @FXML
-  private Rectangle L3;
-
-  @FXML
   private Rectangle L4;
+
+  // @FXML
+  // private Rectangle L3;
+
+  // @FXML
+  // private Rectangle L2;
+
+  // @FXML
+  // private Rectangle L1;
 
   /** Holder for an error panel; this gets attached to root if we need to display error text */
   private Text errorMessage;
-
-  ObservableList<Integer> list;
-
-
-
 
   /**
    * Called by the JavaFX framework to initialize the widget
@@ -71,31 +67,32 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<double[]> {
   @FXML
   private void initialize() {
 
-    L1.fillProperty().bind(
-      Bindings.createObjectBinding(() -> getL1Color(), dataProperty())
-    );
-    L2.fillProperty().bind(
-      Bindings.createObjectBinding(() -> getL2Color(), dataProperty())
-    );
-    L3.fillProperty().bind(
-      Bindings.createObjectBinding(() -> getL3Color(), dataProperty())
-    );
-    L4.fillProperty().bind(
-      Bindings.createObjectBinding(() -> getL4Color(), dataProperty())
-    );
+    // L4.fillProperty().bind(
+    //   Bindings.createObjectBinding(() -> getL4Color(), dataProperty())
+    // );
+    // L3.fillProperty().bind(
+    //   Bindings.createObjectBinding(() -> getL3Color(), dataProperty())
+    // );
+    // L2.fillProperty().bind(
+    //   Bindings.createObjectBinding(() -> getL2Color(), dataProperty())
+    // );
+    // L1.fillProperty().bind(
+    //   Bindings.createObjectBinding(() -> getL1Color(), dataProperty())
+    // );
+
     // root.bac
   //   root.backgroundProperty().bind(
   //       Bindings.createObjectBinding(
   //           () -> createSolidColorBackground(getColor()),
   //           dataProperty()));
   //   root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-  //       @Override
-  //       public void handle(MouseEvent event) {
-  //         if(event.getButton() == MouseButton.PRIMARY) {
-  //           setData(6);
-  //         } else if (event.getButton() == MouseButton.SECONDARY) {
-  //           setData(7);
-  //         }  
+        // @Override
+        // public void handle(MouseEvent event) {
+        //   if(event.getButton() == MouseButton.PRIMARY) {
+        //     setData(6);
+        //   } else if (event.getButton() == MouseButton.SECONDARY) {
+        //     setData(7);
+        //   }  
   //     }
   //  });
    // dataProperty().addListener((newValue) -> checkSoundPlay());
@@ -143,44 +140,47 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<double[]> {
    * on cone nodes and vice versa) </br>
    * @return Color to use
    */
-  private Color getL1Color() {
-    if (getData()!= null) {
-    final int data = (int)getData()[0];
-    final Color PURPLE = Color.rgb(102,0,153);
-    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
-    return colorArr[data];
-    } else {
-      return Color.GRAY;
-    }
-  }
-  private Color getL2Color() {
-    if (getData()!= null) {
-    final int data = (int)getData()[1];
-    final Color PURPLE = Color.rgb(102,0,153);
-    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
-    return colorArr[data];
-    } else {
-      return Color.GRAY;
-    }
-  }private Color getL3Color() {
-    if (getData()!= null) {
-    final int data = (int)getData()[2];
-    final Color PURPLE = Color.rgb(102,0,153);
-    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
-    return colorArr[data];
-    } else {
-      return Color.GRAY;
-    }
-  }private Color getL4Color() {
-    if (getData()!= null) {
-    final int data = (int)getData()[3];
-    final Color PURPLE = Color.rgb(102,0,153);
-    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
-    return colorArr[data];
-    } else {
-      return Color.GRAY;
-    }
-  }
+  // private Color getL1Color() {
+  //   // if(getData()!=null) {
+  //   //   System.out.println(getData().length);
+  //   // }
+  //   if (getData() != null && getData().length>0) {
+  //   final int data = (int)getData()[0];
+  //   final Color PURPLE = Color.rgb(102,0,153);
+  //   Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
+  //   return colorArr[data];
+  //   } else {
+  //     return Color.GRAY;
+  //   }
+  // }
+  // private Color getL2Color() {
+  //   if (getData() != null && getData().length>1) {
+  //   final int data = (int)getData()[1];
+  //   final Color PURPLE = Color.rgb(102,0,153);
+  //   Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
+  //   return colorArr[data];
+  //   } else {
+  //     return Color.GRAY;
+  //   }
+  // }private Color getL3Color() {
+  //   if (getData() != null && getData().length>2) {
+  //   final int data = (int)getData()[2];
+  //   final Color PURPLE = Color.rgb(102,0,153);
+  //   Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
+  //   return colorArr[data];
+  //   } else {
+  //     return Color.GRAY;
+  //   }
+  // }private Color getL4Color() {
+  //   if (getData() != null && getData().length>3) {
+  //   final int data = (int)getData()[3];
+  //   final Color PURPLE = Color.rgb(102,0,153);
+  //   Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
+  //   return colorArr[data];
+  //   } else {
+  //     return Color.GRAY;
+  //   }
+  // }
 
   @Override
   public Pane getView() {
