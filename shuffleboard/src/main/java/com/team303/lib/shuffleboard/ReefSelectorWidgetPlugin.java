@@ -7,21 +7,21 @@ import edu.wpi.first.shuffleboard.api.widget.WidgetType;
 
 import java.util.List;
 
-import com.team303.lib.shuffleboard.widget.NodeSelectorWidget;
+import com.team303.lib.shuffleboard.widget.ReefSelectorWidget;
 
 
 @Description(
     group = "com.team303.lib",
-    name = "NodeSelectorWidget",
-    version = "2023.2.1",
+    name = "ReefSelectorWidget",
+    version = "2025.1.0",
     summary = "A widget that updates color based off of the state of how the operator interacts with a node"
 )
-public final class NodeSelectorWidgetPlugin extends Plugin {
+public final class ReefSelectorWidgetPlugin extends Plugin {
 
   @Override
   public List<ComponentType> getComponents() {
     return List.of(
-        WidgetType.forAnnotatedWidget(NodeSelectorWidget.class)
+        WidgetType.forAnnotatedWidget(ReefSelectorWidget.class)
     );
   }
 }

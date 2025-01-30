@@ -3,16 +3,23 @@ package com.team303.lib.shuffleboard.widget;
 import java.io.File;
 import java.util.List;
 
+import org.fxmisc.easybind.EasyBind;
+
 import com.google.common.collect.ImmutableList;
 
 import edu.wpi.first.shuffleboard.api.prefs.Group;
 import edu.wpi.first.shuffleboard.api.prefs.Setting;
+import edu.wpi.first.shuffleboard.api.sources.DataSource;
 import edu.wpi.first.shuffleboard.api.widget.Description;
 import edu.wpi.first.shuffleboard.api.widget.ParametrizedController;
 import edu.wpi.first.shuffleboard.api.widget.SimpleAnnotatedWidget;
+import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableNumberValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 // import javafx.beans.property.SimpleStringProperty;
 // import javafx.beans.property.StringProperty;
@@ -23,11 +30,13 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-@Description(name = "State of Node", dataTypes = Integer.class, summary = "Updates color of box when state of node changes")
-@ParametrizedController("NodeSelectorWidget.fxml")
-public final class NodeSelectorWidget extends SimpleAnnotatedWidget<Integer> {
+@Description(name = "ReefSelector", dataTypes = double[].class, summary = "Updates color of box when state of node changes")
+@ParametrizedController("ReefSelectorWidget.fxml")
+public final class ReefSelectorWidget extends SimpleAnnotatedWidget<double[]> {
 
   /**
    * The root content to display. We do a simple light grey / dark grey box to
@@ -36,8 +45,24 @@ public final class NodeSelectorWidget extends SimpleAnnotatedWidget<Integer> {
   @FXML
   private Pane root;
 
+  @FXML
+  private Rectangle L1;
+
+  @FXML
+  private Rectangle L2;
+
+  @FXML
+  private Rectangle L3;
+
+  @FXML
+  private Rectangle L4;
+
   /** Holder for an error panel; this gets attached to root if we need to display error text */
   private Text errorMessage;
+
+  ObservableList<Integer> list;
+
+
 
 
   /**
@@ -45,20 +70,34 @@ public final class NodeSelectorWidget extends SimpleAnnotatedWidget<Integer> {
    */
   @FXML
   private void initialize() {
-    root.backgroundProperty().bind(
-        Bindings.createObjectBinding(
-            () -> createSolidColorBackground(getColor()),
-            dataProperty()));
-    root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-          if(event.getButton() == MouseButton.PRIMARY) {
-            setData(6);
-          } else if (event.getButton() == MouseButton.SECONDARY) {
-            setData(7);
-          }  
-      }
-   });
+
+    L1.fillProperty().bind(
+      Bindings.createObjectBinding(() -> getL1Color(), dataProperty())
+    );
+    L2.fillProperty().bind(
+      Bindings.createObjectBinding(() -> getL2Color(), dataProperty())
+    );
+    L3.fillProperty().bind(
+      Bindings.createObjectBinding(() -> getL3Color(), dataProperty())
+    );
+    L4.fillProperty().bind(
+      Bindings.createObjectBinding(() -> getL4Color(), dataProperty())
+    );
+    // root.bac
+  //   root.backgroundProperty().bind(
+  //       Bindings.createObjectBinding(
+  //           () -> createSolidColorBackground(getColor()),
+  //           dataProperty()));
+  //   root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+  //       @Override
+  //       public void handle(MouseEvent event) {
+  //         if(event.getButton() == MouseButton.PRIMARY) {
+  //           setData(6);
+  //         } else if (event.getButton() == MouseButton.SECONDARY) {
+  //           setData(7);
+  //         }  
+  //     }
+  //  });
    // dataProperty().addListener((newValue) -> checkSoundPlay());
   }
 
@@ -104,13 +143,40 @@ public final class NodeSelectorWidget extends SimpleAnnotatedWidget<Integer> {
    * on cone nodes and vice versa) </br>
    * @return Color to use
    */
-  private Color getColor() {
+  private Color getL1Color() {
     if (getData()!= null) {
-    final Number data = getData();
-    final Integer realData = data.intValue();
+    final int data = (int)getData()[0];
     final Color PURPLE = Color.rgb(102,0,153);
     Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
-    return colorArr[realData];
+    return colorArr[data];
+    } else {
+      return Color.GRAY;
+    }
+  }
+  private Color getL2Color() {
+    if (getData()!= null) {
+    final int data = (int)getData()[1];
+    final Color PURPLE = Color.rgb(102,0,153);
+    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
+    return colorArr[data];
+    } else {
+      return Color.GRAY;
+    }
+  }private Color getL3Color() {
+    if (getData()!= null) {
+    final int data = (int)getData()[2];
+    final Color PURPLE = Color.rgb(102,0,153);
+    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
+    return colorArr[data];
+    } else {
+      return Color.GRAY;
+    }
+  }private Color getL4Color() {
+    if (getData()!= null) {
+    final int data = (int)getData()[3];
+    final Color PURPLE = Color.rgb(102,0,153);
+    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
+    return colorArr[data];
     } else {
       return Color.GRAY;
     }
