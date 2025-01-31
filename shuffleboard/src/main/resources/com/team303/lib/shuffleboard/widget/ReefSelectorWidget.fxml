@@ -14,8 +14,4 @@
     <Rectangle fx:id="L3" height="22" width="128"/>
     <Rectangle fx:id="L2" height="22" width="128"/>
     <Rectangle fx:id="L1" height="22" width="128"/> 
-    <!-- <padding> -->
-        <!-- Keep a 4 pixel buffer around the widget to avoid it from feeling cramped -->
-        <!-- <Insets topRightBottomLeft="4"/> -->
-    <!-- </padding> -->
 </VBox>

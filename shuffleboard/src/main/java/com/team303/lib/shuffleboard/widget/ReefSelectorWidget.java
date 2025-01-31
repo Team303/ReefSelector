@@ -39,10 +39,7 @@ import javafx.scene.text.Text;
 @ParametrizedController("ReefSelectorWidget.fxml")
 public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
 
-  /**
-   * The root content to display. We do a simple light grey / dark grey box to
-   * indicate true / false status and white if there's no data.
-   */
+
   @FXML
   private Pane root;
 
@@ -58,7 +55,10 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
   @FXML
   private Rectangle L1;
 
-  /** Holder for an error panel; this gets attached to root if we need to display error text */
+  /**
+   * Holder for an error panel; this gets attached to root if we need to display
+   * error text
+   */
   private Text errorMessage;
 
   /**
@@ -68,39 +68,18 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
   private void initialize() {
 
     L4.fillProperty().bind(
-      Bindings.createObjectBinding(() -> getL4Color(), dataProperty())
-    );
+        Bindings.createObjectBinding(() -> getL4Color(), dataProperty()));
     L3.fillProperty().bind(
-      Bindings.createObjectBinding(() -> getL3Color(), dataProperty())
-    );
+        Bindings.createObjectBinding(() -> getL3Color(), dataProperty()));
     L2.fillProperty().bind(
-      Bindings.createObjectBinding(() -> getL2Color(), dataProperty())
-    );
+        Bindings.createObjectBinding(() -> getL2Color(), dataProperty()));
     L1.fillProperty().bind(
-      Bindings.createObjectBinding(() -> getL1Color(), dataProperty())
-    );
-
-    // root.bac
-  //   root.backgroundProperty().bind(
-  //       Bindings.createObjectBinding(
-  //           () -> createSolidColorBackground(getColor()),
-  //           dataProperty()));
-  //   root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        // @Override
-        // public void handle(MouseEvent event) {
-        //   if(event.getButton() == MouseButton.PRIMARY) {
-        //     setData(6);
-        //   } else if (event.getButton() == MouseButton.SECONDARY) {
-        //     setData(7);
-        //   }  
-  //     }
-  //  });
-   // dataProperty().addListener((newValue) -> checkSoundPlay());
+        Bindings.createObjectBinding(() -> getL1Color(), dataProperty()));
   }
-
 
   /**
    * Set error message, or clear error message by passing a null string
+   * 
    * @param msg Message to set, or null to clear currently-set message
    */
   private void setErrorMessage(String msg) {
@@ -122,6 +101,7 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
 
   /**
    * Build a sold-color background to attach as a property
+   * 
    * @param color Color to use
    * @return The built background
    */
@@ -130,55 +110,59 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
   }
 
   /**
-   * <br> Choose the color to use based on current widget state </br>
-   * <br> &#8226 Box will be <b>gray</b> if a node has no object placed on it </br>
-   * <br> &#8226 Box will be <b>yellow</b> if a node has a cone placed on it </br>
-   * <br> &#8226 Box will be <b>purple</b> if a node has a cube placed on it </br>
-   * <br> &#8226 Box wlil be <b>green</b> if operator is hovering over node in Shuffleboard </br>
-   * <br> &#8226 Box will be <b>orange</b> if node placement is queued </br>
-   * <br> &#8226 Box will be <b>red</b> if robot detects that placement on node is invalid (typically because cubes can't be placed
+   * <br>
+   * Choose the color to use based on current widget state </br>
+   * <br>
+   * &#8226 Box will be <b>gray</b> if a node has no object placed on it </br>
+   * <br>
+   * &#8226 Box will be <b>green</b> if a node has coral placed in it </br>
+   * <br>
+   * &#8226 Box wlil be <b>yellow</b> if operator is hovering over node in
+   * Shuffleboard </br>
+   * <br>
+   * &#8226 Box will be <b>orange</b> if node placement is queued </br>
+   * <br>
+   * &#8226 Box will be <b>red</b> if robot detects that placement on node is
+   * invalid (typically because cubes can't be placed
    * on cone nodes and vice versa) </br>
+   * 
    * @return Color to use
    */
   private Color getL1Color() {
-    // if(getData()!=null) {
-    //   System.out.println(getData().length);
-    // }
     if (getData() != null) {
-    final int data = (int)(getData().getL1());
-    final Color PURPLE = Color.rgb(102,0,153);
-    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
-    return colorArr[data];
+      final int data = (int) (getData().getL1());
+      Color[] colorArr = { Color.GRAY, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED };
+      return colorArr[data];
     } else {
       return Color.GRAY;
     }
   }
+
   private Color getL2Color() {
     if (getData() != null) {
-    final int data = (int)(getData().getL2());
-    final Color PURPLE = Color.rgb(102,0,153);
-    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
-    return colorArr[data];
-    } else {
-      return Color.GRAY;
-    }
-  }private Color getL3Color() {
-    if (getData() != null) {
-    final int data = (int)(getData().getL3());
-    final Color PURPLE = Color.rgb(102,0,153);
-    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
-    return colorArr[data];
+      final int data = (int) (getData().getL2());
+      Color[] colorArr = { Color.GRAY, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED };
+      return colorArr[data];
     } else {
       return Color.GRAY;
     }
   }
+
+  private Color getL3Color() {
+    if (getData() != null) {
+      final int data = (int) (getData().getL3());
+      Color[] colorArr = { Color.GRAY, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED };
+      return colorArr[data];
+    } else {
+      return Color.GRAY;
+    }
+  }
+
   private Color getL4Color() {
     if (getData() != null) {
-    final int data = (int)(getData().getL4());
-    System.out.println(data);
-    final Color PURPLE = Color.rgb(102,0,153);
-    Color[] colorArr = {Color.GRAY,Color.YELLOW,PURPLE,Color.GREEN,Color.ORANGE,Color.RED};
-    return colorArr[data];
+      final int data = (int) (getData().getL4());
+      Color[] colorArr = { Color.GRAY, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED };
+      return colorArr[data];
     } else {
       return Color.GRAY;
     }

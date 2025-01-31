@@ -21,7 +21,7 @@ public final class ReefStateType extends ComplexDataType<ReefState> {
   private static final String TYPE_NAME = "ReefState";
 
   /**
-   * The single instance of the point type. By convention, this is a {@code public static final}
+   * The single instance of the type. By convention, this is a {@code public static final}
    * field and the constructor is private to ensure only a single instance of the data type exists.
    */
   public static final ReefStateType Instance = new ReefStateType();

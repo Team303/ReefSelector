@@ -11,7 +11,7 @@ import java.util.List;
 import com.team303.lib.shuffleboard.data.type.ReefStateType;
 import com.team303.lib.shuffleboard.widget.ReefSelectorWidget;
 
-@Description(group = "com.team303.lib", name = "ReefSelectorWidget", version = "2025.1.3", summary = "A widget that updates color based off of the state of how the operator interacts with a node")
+@Description(group = "com.team303.lib", name = "ReefSelectorWidget", version = "2025.2.0", summary = "A widget that updates color based off of the state of how the operator interacts with the reef.")
 public final class ReefSelectorWidgetPlugin extends Plugin {
 
   @Override
