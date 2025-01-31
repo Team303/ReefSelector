@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.controls.*?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.team303.lib.shuffleboard.widget.ReefSelectorWidget"
       fx:id="root"
-      spacing="4">
-     <Rectangle fx:id="L4" height="32" width="128" />
-    <!-- <Rectangle fx:id="L3" height="5" width="5"/>
-    <Rectangle fx:id="L2" height="5" width="5"/>
-    <Rectangle fx:id="L1" height="5" width="5"/>  -->
+      spacing="0">
+     <Rectangle fx:id="L4" height="22" width="128" />
+    <Rectangle fx:id="L3" height="22" width="128"/>
+    <Rectangle fx:id="L2" height="22" width="128"/>
+    <Rectangle fx:id="L1" height="22" width="128"/> 
     <!-- <padding> -->
         <!-- Keep a 4 pixel buffer around the widget to avoid it from feeling cramped -->
         <!-- <Insets topRightBottomLeft="4"/> -->

@@ -18,7 +18,7 @@ public final class ReefStateType extends ComplexDataType<ReefState> {
    * base a {@code .type} of "DifferentialDrive", a sendable chooser has it set to "String Chooser"; a hypothetical
    * 2D point would have it set to "Point2D".
    */
-  private static final String TYPE_NAME = "ReefStateType";
+  private static final String TYPE_NAME = "ReefState";
 
   /**
    * The single instance of the point type. By convention, this is a {@code public static final}
@@ -33,15 +33,15 @@ public final class ReefStateType extends ComplexDataType<ReefState> {
   @Override
   public Function<Map<String, Object>, ReefState> fromMap() {
     return map -> new ReefState(
-        Maps.getOrDefault(map, "L1", 0),
-        Maps.getOrDefault(map, "L2", 0),
-        Maps.getOrDefault(map,"L3", 0),
-        Maps.getOrDefault(map,"L4",0)
+        Maps.getOrDefault(map, "L1", (Long)0l),
+        Maps.getOrDefault(map, "L2", (Long)0l),
+        Maps.getOrDefault(map,"L3", (Long)0l),
+        Maps.getOrDefault(map,"L4",(Long)0l)
     );
   }
 
   @Override
   public ReefState getDefaultValue() {
-    return new ReefState(0, 0,0,0);
+    return new ReefState(0l, 0l,0l,0l);
   }
 }
