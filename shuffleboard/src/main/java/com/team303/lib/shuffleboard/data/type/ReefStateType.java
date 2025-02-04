@@ -33,10 +33,10 @@ public final class ReefStateType extends ComplexDataType<ReefState> {
   @Override
   public Function<Map<String, Object>, ReefState> fromMap() {
     return map -> new ReefState(
-        Maps.getOrDefault(map, "L1", (Long)0l),
-        Maps.getOrDefault(map, "L2", (Long)0l),
-        Maps.getOrDefault(map,"L3", (Long)0l),
-        Maps.getOrDefault(map,"L4",(Long)0l)
+        Maps.getOrDefault(map, "State", new long[]{(Long)0l,(Long)0l,(Long)0l,(Long)0l})[0],
+        Maps.getOrDefault(map, "State", new long[]{(Long)0l,(Long)0l,(Long)0l,(Long)0l})[1],
+        Maps.getOrDefault(map, "State", new long[]{(Long)0l,(Long)0l,(Long)0l,(Long)0l})[2],
+        Maps.getOrDefault(map, "State", new long[]{(Long)0l,(Long)0l,(Long)0l,(Long)0l})[3]
     );
   }
 

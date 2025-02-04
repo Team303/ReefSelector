@@ -39,7 +39,6 @@ import javafx.scene.text.Text;
 @ParametrizedController("ReefSelectorWidget.fxml")
 public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
 
-
   @FXML
   private Pane root;
 
@@ -75,6 +74,58 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
         Bindings.createObjectBinding(() -> getL2Color(), dataProperty()));
     L1.fillProperty().bind(
         Bindings.createObjectBinding(() -> getL1Color(), dataProperty()));
+    L4.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        if (event.getButton() == MouseButton.PRIMARY) {
+          long[] curValues = dataProperty().get().getState();
+          if (curValues[3] == 0) {
+            setData(new ReefState(curValues[0], curValues[1], curValues[2], 1));
+          } else {
+            setData(new ReefState(curValues[0], curValues[1], curValues[2], 0));
+          }
+        }
+      }
+    });
+    L3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        if (event.getButton() == MouseButton.PRIMARY) {
+          long[] curValues = dataProperty().get().getState();
+          if (curValues[2] == 0) {
+            setData(new ReefState(curValues[0], curValues[1], 1, curValues[3]));
+          } else {
+            setData(new ReefState(curValues[0], curValues[1], 0, curValues[3]));
+          }
+        }
+      }
+    });
+    L2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        if (event.getButton() == MouseButton.PRIMARY) {
+          long[] curValues = dataProperty().get().getState();
+          if (curValues[1] == 0) {
+            setData(new ReefState(curValues[0], 1, curValues[2], curValues[3]));
+          } else {
+            setData(new ReefState(curValues[0], 0, curValues[2], curValues[3]));
+          }
+        }
+      }
+    });
+    L1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        if (event.getButton() == MouseButton.PRIMARY) {
+          long[] curValues = dataProperty().get().getState();
+          if (curValues[0] == 0) {
+            setData(new ReefState(1, curValues[1], curValues[2], curValues[3]));
+          } else {
+            setData(new ReefState(0, curValues[1], curValues[2], curValues[3]));
+          }
+        }
+      }
+    });
   }
 
   /**
@@ -130,7 +181,7 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
    */
   private Color getL1Color() {
     if (getData() != null) {
-      final int data = (int) (getData().getL1());
+      final int data = (int) (getData().getState())[0];
       Color[] colorArr = { Color.GRAY, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED };
       return colorArr[data];
     } else {
@@ -140,7 +191,7 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
 
   private Color getL2Color() {
     if (getData() != null) {
-      final int data = (int) (getData().getL2());
+      final int data = (int) (getData().getState())[1];
       Color[] colorArr = { Color.GRAY, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED };
       return colorArr[data];
     } else {
@@ -150,7 +201,7 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
 
   private Color getL3Color() {
     if (getData() != null) {
-      final int data = (int) (getData().getL3());
+      final int data = (int) (getData().getState())[2];
       Color[] colorArr = { Color.GRAY, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED };
       return colorArr[data];
     } else {
@@ -160,7 +211,7 @@ public final class ReefSelectorWidget extends SimpleAnnotatedWidget<ReefState> {
 
   private Color getL4Color() {
     if (getData() != null) {
-      final int data = (int) (getData().getL4());
+      final int data = (int) (getData().getState())[3];
       Color[] colorArr = { Color.GRAY, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED };
       return colorArr[data];
     } else {
